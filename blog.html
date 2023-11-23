@@ -13,9 +13,9 @@ title: Blog
           {% assign folder_path = folder.path | split: '/' %}
           {% assign folder_name = folder_path[2] %}
           {% for file in site.static_files %}
-            {% if file.path contains '/audio/' and file.path contains folder_name %}
-              <li>
-                <audio controls>
+          {% if file.path contains '/audio/' and file.path contains folder_name %}
+          <li>
+            <audio controls>
                   <source src="{{ file.path | relative_url }}" type="audio/mp3">
                   Your browser does not support the audio element.
                 </audio>
@@ -25,50 +25,52 @@ title: Blog
           {% endfor %}
         </ul>
       </li>
-    {% endif %}
-  {% endfor %}
-</ul> -->
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: 15px;
-  }
-
-  h2 {
-    margin-bottom: 5px;
-  }
-</style>
-
-<ul>
-  {% assign totalAudioFiles = 0 %}
-  {% for folder in site.static_files %}
-    {% if folder.path contains '/audio/' %}
-      <li>
-        <h2>{{ folder.name }}</h2>
-        <ul>
-          {% assign folder_path = folder.path | split: '/' %}
-          {% assign folder_name = folder_path[2] %}
-          {% for file in site.static_files %}
-            {% if file.path contains '/audio/' and file.path contains folder_name %}
-              {% assign totalAudioFiles = totalAudioFiles | plus: 1 %}
-              <li>
-                <audio controls style="width:100%;">
-                  <source src="{{ file.path | relative_url }}" type="audio/mp3">
-                  Your browser does not support the audio element.
-                </audio>
-                {{ file.name }}
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </li>
-    {% endif %}
-  {% endfor %}
-</ul>
-
-<p>Total Audio Files: {{ totalAudioFiles }}</p>
+      {% endif %}
+      {% endfor %}
+    </ul> -->
+    <p>Total Audio Files: {{ totalAudioFiles }}</p>
+    
+    <!-- <style>
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+    
+      li {
+        margin-bottom: 15px;
+      }
+    
+      h2 {
+        margin-bottom: 5px;
+      }
+    </style> -->
+    
+    <ul>
+      {% assign totalAudioFiles = 0 %}
+      {% for folder in site.static_files %}
+        {% if folder.path contains '/audio/' %}
+          <li>
+            <h2>{{ folder.name }}</h2>
+            <ul>
+              {% assign folder_path = folder.path | split: '/' %}
+              {% assign folder_name = folder_path[2] %}
+              {% for file in site.static_files %}
+                {% if file.path contains '/audio/' and file.path contains folder_name %}
+                  {% assign totalAudioFiles = totalAudioFiles | plus: 1 %}
+                  <li>
+                    <audio controls style="width:100%;">
+                      <source src="{{ site.baseurl }}{{ file.path | relative_url }}" type="audio/mp3">
+                      Your browser does not support the audio element.
+                    </audio>
+                    {{ file.name }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <p>Total Audio Files: {{ totalAudioFiles }}</p>
+    
