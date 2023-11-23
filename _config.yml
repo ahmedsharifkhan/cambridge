@@ -40,3 +40,6 @@ plugins:
 collections:
   media:
     output: true
+
+include:
+  - _assets

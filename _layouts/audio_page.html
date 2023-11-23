@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<h1>Audio Files</h1>
+
+<ul>
+  {% for folder in site.static_files %}
+    {% if folder.path contains '/audio/' %}
+      <li>
+        <h2>{{ folder.name }}</h2>
+        <ul>
+          {% assign folder_path = folder.path | split: '/' %}
+          {% assign folder_name = folder_path[2] %}
+          {% for file in site.static_files %}
+            {% if file.path contains '/audio/' and file.path contains folder_name %}
+              <li>
+                <audio controls>
+                  <source src="{{ file.path }}" type="audio/mp3">
+                  Your browser does not support the audio element.
+                </audio>
+                {{ file.name }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
