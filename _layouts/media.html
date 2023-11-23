@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<h1>Media Files</h1>
+
+<ul>
+  {% for media in site.media %}
+    <li>
+      <audio controls>
+        <source src="{{ media.url }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      {{ media.name }}
+    </li>
+  {% endfor %}
+</ul>
